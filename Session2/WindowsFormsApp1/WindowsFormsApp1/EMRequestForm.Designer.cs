@@ -48,24 +48,24 @@
             this.buttonAddtoList = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBoxPart = new System.Windows.Forms.ComboBox();
+            this.partsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.wSC2019_Session2DataSet = new WindowsFormsApp1.WSC2019_Session2DataSet();
             this.label7 = new System.Windows.Forms.Label();
             this.dataGridViewPart = new System.Windows.Forms.DataGridView();
-            this.buttonSubmit = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.wSC2019_Session2DataSet = new WindowsFormsApp1.WSC2019_Session2DataSet();
-            this.partsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonSubmit = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.partsTableAdapter = new WindowsFormsApp1.WSC2019_Session2DataSetTableAdapters.PartsTableAdapter();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wSC2019_Session2DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wSC2019_Session2DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPart)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -257,6 +257,16 @@
             this.comboBoxPart.TabIndex = 11;
             this.comboBoxPart.ValueMember = "ID";
             // 
+            // partsBindingSource
+            // 
+            this.partsBindingSource.DataMember = "Parts";
+            this.partsBindingSource.DataSource = this.wSC2019_Session2DataSet;
+            // 
+            // wSC2019_Session2DataSet
+            // 
+            this.wSC2019_Session2DataSet.DataSetName = "WSC2019_Session2DataSet";
+            this.wSC2019_Session2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -280,25 +290,6 @@
             this.dataGridViewPart.TabIndex = 9;
             this.dataGridViewPart.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPart_CellClick);
             // 
-            // buttonSubmit
-            // 
-            this.buttonSubmit.Location = new System.Drawing.Point(219, 415);
-            this.buttonSubmit.Name = "buttonSubmit";
-            this.buttonSubmit.Size = new System.Drawing.Size(124, 23);
-            this.buttonSubmit.TabIndex = 0;
-            this.buttonSubmit.Text = "Submit";
-            this.buttonSubmit.UseVisualStyleBackColor = true;
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Location = new System.Drawing.Point(349, 415);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(124, 23);
-            this.buttonCancel.TabIndex = 2;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
             // Column4
             // 
             this.Column4.HeaderText = "Id";
@@ -320,15 +311,25 @@
             this.Column3.HeaderText = "Action";
             this.Column3.Name = "Column3";
             // 
-            // wSC2019_Session2DataSet
+            // buttonSubmit
             // 
-            this.wSC2019_Session2DataSet.DataSetName = "WSC2019_Session2DataSet";
-            this.wSC2019_Session2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.buttonSubmit.Location = new System.Drawing.Point(219, 415);
+            this.buttonSubmit.Name = "buttonSubmit";
+            this.buttonSubmit.Size = new System.Drawing.Size(124, 23);
+            this.buttonSubmit.TabIndex = 0;
+            this.buttonSubmit.Text = "Submit";
+            this.buttonSubmit.UseVisualStyleBackColor = true;
+            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
             // 
-            // partsBindingSource
+            // buttonCancel
             // 
-            this.partsBindingSource.DataMember = "Parts";
-            this.partsBindingSource.DataSource = this.wSC2019_Session2DataSet;
+            this.buttonCancel.Location = new System.Drawing.Point(349, 415);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(124, 23);
+            this.buttonCancel.TabIndex = 2;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // partsTableAdapter
             // 
@@ -354,9 +355,9 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wSC2019_Session2DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wSC2019_Session2DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPart)).EndInit();
             this.ResumeLayout(false);
 
         }

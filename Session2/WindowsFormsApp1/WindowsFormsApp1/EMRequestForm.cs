@@ -20,12 +20,13 @@ namespace WindowsFormsApp1
         }
 
         List<TempChangedPart> changedParts = new List<TempChangedPart>();
+        EmergencyMaintenance Em = new EmergencyMaintenance();
 
         public EMRequestForm(int emId)
         {
             InitializeComponent();
 
-            var Em = ent.EmergencyMaintenances.Where(x => x.ID == emId).FirstOrDefault();
+            Em = ent.EmergencyMaintenances.Where(x => x.ID == emId).FirstOrDefault();
 
             if (Em != null)
             {
@@ -178,6 +179,43 @@ namespace WindowsFormsApp1
 
             changedParts.Add(tempChangedPart);
             loadDataGrid();
+        }
+
+        private void buttonSubmit_Click(object sender, EventArgs e)
+        {
+            if (dateTimePickerStartDate.Value.Date < Em.EMReportDate)
+            {
+                MessageBox.Show("Start date cannot be earlier than report date", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else if (dateTimePickerStartDate.Value.Date < dateTimePickerCompletedDate.Value.Date)
+            {
+                MessageBox.Show("End date cannot be earlier than start date", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else
+            {
+                Em.EMStartDate = dateTimePickerStartDate.Value.Date;
+                if (dateTimePickerCompletedDate.Visible == true)
+                {
+                    Em.EMTechnicianNote = richTextBoxTechnicianNote.Text;
+                    Em.EMEndDate = dateTimePickerCompletedDate.Value.Date;
+                }
+
+                foreach (var changedPart in changedParts)
+                {
+                    ChangedPart cp = new ChangedPart
+                    {
+                        EmergencyMaintenanceID = Em.ID,
+                        PartID = changedPart.partID,
+                        Amount = changedPart.amount
+                    };
+
+                    ent.ChangedParts.Add(cp);
+                    ent.SaveChanges();
+                }
+
+                MessageBox.Show("Request has been saved.");
+                Hide();
+            }
         }
     }
 }
