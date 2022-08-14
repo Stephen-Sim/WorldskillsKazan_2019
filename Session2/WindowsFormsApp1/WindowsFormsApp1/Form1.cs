@@ -38,7 +38,8 @@ namespace WindowsFormsApp1
                     }
                     else
                     {
-
+                        new EMManagementForm().Show();
+                        this.Hide();
                     }
                 }
                 else

@@ -74,20 +74,20 @@
     <Compile Include="EmergencyMaintenance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="EMManagement.cs">
+    <Compile Include="EMManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EMManagement.Designer.cs">
-      <DependentUpon>EMManagement.cs</DependentUpon>
+    <Compile Include="EMManagementForm.Designer.cs">
+      <DependentUpon>EMManagementForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="EMRequest.cs">
+    <Compile Include="EMaintenanceRequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EMRequest.Designer.cs">
-      <DependentUpon>EMRequest.cs</DependentUpon>
+    <Compile Include="EMaintenanceRequestForm.Designer.cs">
+      <DependentUpon>EMaintenanceRequestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EMRequestForm.cs">
       <SubType>Form</SubType>
@@ -139,11 +139,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WSC2019_Session2DataSet.xsd</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="EMManagement.resx">
-      <DependentUpon>EMManagement.cs</DependentUpon>
+    <EmbeddedResource Include="EMManagementForm.resx">
+      <DependentUpon>EMManagementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EMRequest.resx">
-      <DependentUpon>EMRequest.cs</DependentUpon>
+    <EmbeddedResource Include="EMaintenanceRequestForm.resx">
+      <DependentUpon>EMaintenanceRequestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EMRequestForm.resx">
       <DependentUpon>EMRequestForm.cs</DependentUpon>

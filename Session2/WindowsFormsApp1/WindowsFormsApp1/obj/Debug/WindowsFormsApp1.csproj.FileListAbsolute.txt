@@ -16,5 +16,5 @@ C:\Users\USER\Desktop\WSC2019_Kazan\Session2\WindowsFormsApp1\WindowsFormsApp1\o
 C:\Users\USER\Desktop\WSC2019_Kazan\Session2\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\USER\Desktop\WSC2019_Kazan\Session2\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.ManagerForm.resources
 C:\Users\USER\Desktop\WSC2019_Kazan\Session2\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.EMRequestForm.resources
-C:\Users\USER\Desktop\WSC2019_Kazan\Session2\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.EMManagement.resources
-C:\Users\USER\Desktop\WSC2019_Kazan\Session2\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.EMRequest.resources
+C:\Users\USER\Desktop\WSC2019_Kazan\Session2\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.EMManagementForm.resources
+C:\Users\USER\Desktop\WSC2019_Kazan\Session2\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.EMaintenanceRequestForm.resources

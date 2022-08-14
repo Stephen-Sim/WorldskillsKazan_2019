@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class EMManagement
+    partial class EMManagementForm
     {
         /// <summary>
         /// Required designer variable.

@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class EMRequest : Form
+    public partial class EMaintenanceRequestForm : Form
     {
         EmergencyMaintenance Em = new EmergencyMaintenance();
         WSC2019_Session2Entities1 ent = new WSC2019_Session2Entities1();
-        public EMRequest(int emId)
+        public EMaintenanceRequestForm(int emId)
         {
             InitializeComponent();
             this.BackColor = Color.FromArgb(0, 92, 185);
@@ -24,10 +24,6 @@ namespace WindowsFormsApp1
             labelAssetName.Text = Em.Asset.AssetName;
             labelAssetSN.Text = Em.Asset.AssetSN;
             labelDepartment.Text = Em.Asset.DepartmentLocation.Department.Name;
-            comboBoxPriority.SelectedValue = Em.PriorityID;
-            comboBoxPriority.DisplayMember = ent.Priorities.Where(x => x.ID == Em.PriorityID).First().Name;
-            richTextBoxDesc.Text = Em.DescriptionEmergency;
-            richTextBoxOtherCon.Text = Em.OtherConsiderations;
         }
 
         private void EMRequest_Load(object sender, EventArgs e)
@@ -48,10 +44,13 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Please fill in Description of Emergency");
             }
             else
-            {
-                Em.PriorityID = (long) comboBoxPriority.SelectedValue;
-                Em.DescriptionEmergency = richTextBoxDesc.Text;
-                Em.OtherConsiderations = (String.IsNullOrWhiteSpace(richTextBoxOtherCon.Text)) ? "none" : richTextBoxOtherCon.Text;
+            { 
+                EmergencyMaintenance emergencyMaintenance = new EmergencyMaintenance();
+                emergencyMaintenance.AssetID = Em.AssetID;
+                emergencyMaintenance.PriorityID = (long) comboBoxPriority.SelectedValue;
+                emergencyMaintenance.DescriptionEmergency = richTextBoxDesc.Text;
+                emergencyMaintenance.OtherConsiderations = (String.IsNullOrWhiteSpace(richTextBoxOtherCon.Text)) ? "none" : richTextBoxOtherCon.Text;
+                ent.EmergencyMaintenances.Add(emergencyMaintenance);
                 ent.SaveChanges();
                 MessageBox.Show("Request created successfully");
                 this.Close();

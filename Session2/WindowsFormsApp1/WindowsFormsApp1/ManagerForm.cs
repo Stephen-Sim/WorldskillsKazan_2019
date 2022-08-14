@@ -25,7 +25,6 @@ namespace WindowsFormsApp1
             dataGridView1.Columns.Add("Department", "Department");
 
             dataGridView1.Columns[0].Visible = false;
-            dataGridView1.Rows[0].Selected = true;
 
             loaddata();
         }
@@ -52,7 +51,14 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new EMRequestForm(int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString())).ShowDialog();
+            try
+            {
+                new EMRequestForm(int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString())).ShowDialog();
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
 }

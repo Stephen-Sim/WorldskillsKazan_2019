@@ -188,7 +188,7 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Start date cannot be earlier than report date", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-            else if (dateTimePickerStartDate.Value.Date < dateTimePickerCompletedDate.Value.Date)
+            else if (dateTimePickerStartDate.Value.Date > dateTimePickerCompletedDate.Value.Date)
             {
                 MessageBox.Show("End date cannot be earlier than start date", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }

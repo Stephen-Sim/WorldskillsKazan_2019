@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class EMRequest
+    partial class EMaintenanceRequestForm
     {
         /// <summary>
         /// Required designer variable.

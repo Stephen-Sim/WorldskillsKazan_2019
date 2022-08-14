@@ -10,16 +10,15 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class EMManagement : Form
+    public partial class EMManagementForm : Form
     {
         WSC2019_Session2Entities1 ent = new WSC2019_Session2Entities1();
-        public EMManagement()
+        public EMManagementForm()
         {
             InitializeComponent();
             this.BackColor = Color.FromArgb(0, 92, 185);
 
             loadData();
-            dataGridViewAssets.Rows[0].Selected = true;
         }
 
         private void loadData()
@@ -56,7 +55,14 @@ namespace WindowsFormsApp1
 
         private void buttonSendRequest_Click(object sender, EventArgs e)
         {
-            new EMRequest(int.Parse(dataGridViewAssets.SelectedRows[0].Cells[0].Value.ToString())).ShowDialog();
+            try
+            {
+                new EMaintenanceRequestForm(int.Parse(dataGridViewAssets.SelectedRows[0].Cells[0].Value.ToString())).ShowDialog();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }
