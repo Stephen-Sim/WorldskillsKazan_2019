@@ -16,8 +16,10 @@ namespace WindowsFormsApp1
         public EMManagement()
         {
             InitializeComponent();
+            this.BackColor = Color.FromArgb(0, 92, 185);
 
             loadData();
+            dataGridViewAssets.Rows[0].Selected = true;
         }
 
         private void loadData()
@@ -45,6 +47,16 @@ namespace WindowsFormsApp1
                 }
             }
 
+        }
+
+        private void dataGridViewAssets_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridViewAssets.Rows[dataGridViewAssets.SelectedCells[0].RowIndex].Selected = true;
+        }
+
+        private void buttonSendRequest_Click(object sender, EventArgs e)
+        {
+            new EMRequest(int.Parse(dataGridViewAssets.SelectedRows[0].Cells[0].Value.ToString())).ShowDialog();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace WindowsFormsApp1
         public ManagerForm()
         {
             InitializeComponent();
+            this.BackColor = Color.FromArgb(0, 92, 185);
 
             dataGridView1.Columns.Add("Id", "Id");
             dataGridView1.Columns.Add("Asset SN", "Asset SN");

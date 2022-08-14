@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelDepartment = new System.Windows.Forms.Label();
@@ -39,20 +40,25 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.comboBoxPriority = new System.Windows.Forms.ComboBox();
+            this.richTextBoxDesc = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxOtherCon = new System.Windows.Forms.RichTextBox();
             this.buttonSubmit = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.wSC2019_Session2DataSet = new WindowsFormsApp1.WSC2019_Session2DataSet();
+            this.prioritiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prioritiesTableAdapter = new WindowsFormsApp1.WSC2019_Session2DataSetTableAdapters.PrioritiesTableAdapter();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wSC2019_Session2DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prioritiesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.richTextBox2);
-            this.groupBox2.Controls.Add(this.richTextBox1);
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.richTextBoxOtherCon);
+            this.groupBox2.Controls.Add(this.richTextBoxDesc);
+            this.groupBox2.Controls.Add(this.comboBoxPriority);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
@@ -61,7 +67,7 @@
             this.groupBox2.Size = new System.Drawing.Size(647, 226);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox2.Text = "Request Report";
             // 
             // groupBox1
             // 
@@ -162,29 +168,32 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Other Considerations :";
             // 
-            // comboBox1
+            // comboBoxPriority
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(76, 30);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(179, 21);
-            this.comboBox1.TabIndex = 3;
+            this.comboBoxPriority.DataSource = this.prioritiesBindingSource;
+            this.comboBoxPriority.DisplayMember = "Name";
+            this.comboBoxPriority.FormattingEnabled = true;
+            this.comboBoxPriority.Location = new System.Drawing.Point(76, 30);
+            this.comboBoxPriority.Name = "comboBoxPriority";
+            this.comboBoxPriority.Size = new System.Drawing.Size(179, 21);
+            this.comboBoxPriority.TabIndex = 3;
+            this.comboBoxPriority.ValueMember = "ID";
             // 
-            // richTextBox1
+            // richTextBoxDesc
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(54, 84);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(575, 48);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.richTextBoxDesc.Location = new System.Drawing.Point(54, 84);
+            this.richTextBoxDesc.Name = "richTextBoxDesc";
+            this.richTextBoxDesc.Size = new System.Drawing.Size(575, 48);
+            this.richTextBoxDesc.TabIndex = 4;
+            this.richTextBoxDesc.Text = "";
             // 
-            // richTextBox2
+            // richTextBoxOtherCon
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(54, 166);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(575, 47);
-            this.richTextBox2.TabIndex = 5;
-            this.richTextBox2.Text = "";
+            this.richTextBoxOtherCon.Location = new System.Drawing.Point(54, 166);
+            this.richTextBoxOtherCon.Name = "richTextBoxOtherCon";
+            this.richTextBoxOtherCon.Size = new System.Drawing.Size(575, 47);
+            this.richTextBoxOtherCon.TabIndex = 5;
+            this.richTextBoxOtherCon.Text = "";
             // 
             // buttonSubmit
             // 
@@ -194,6 +203,7 @@
             this.buttonSubmit.TabIndex = 6;
             this.buttonSubmit.Text = "Submit Request";
             this.buttonSubmit.UseVisualStyleBackColor = true;
+            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
             // 
             // buttonCancel
             // 
@@ -203,11 +213,27 @@
             this.buttonCancel.TabIndex = 7;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // wSC2019_Session2DataSet
+            // 
+            this.wSC2019_Session2DataSet.DataSetName = "WSC2019_Session2DataSet";
+            this.wSC2019_Session2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // prioritiesBindingSource
+            // 
+            this.prioritiesBindingSource.DataMember = "Priorities";
+            this.prioritiesBindingSource.DataSource = this.wSC2019_Session2DataSet;
+            // 
+            // prioritiesTableAdapter
+            // 
+            this.prioritiesTableAdapter.ClearBeforeFill = true;
             // 
             // EMRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(693, 454);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSubmit);
@@ -215,19 +241,22 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "EMRequest";
             this.Text = "Emergency Maintenance Request";
+            this.Load += new System.EventHandler(this.EMRequest_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wSC2019_Session2DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prioritiesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxOtherCon;
+        private System.Windows.Forms.RichTextBox richTextBoxDesc;
+        private System.Windows.Forms.ComboBox comboBoxPriority;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -240,5 +269,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonSubmit;
         private System.Windows.Forms.Button buttonCancel;
+        private WSC2019_Session2DataSet wSC2019_Session2DataSet;
+        private System.Windows.Forms.BindingSource prioritiesBindingSource;
+        private WSC2019_Session2DataSetTableAdapters.PrioritiesTableAdapter prioritiesTableAdapter;
     }
 }

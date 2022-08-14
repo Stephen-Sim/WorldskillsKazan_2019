@@ -52,6 +52,7 @@
             this.dataGridViewAssets.Name = "dataGridViewAssets";
             this.dataGridViewAssets.Size = new System.Drawing.Size(766, 304);
             this.dataGridViewAssets.TabIndex = 0;
+            this.dataGridViewAssets.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAssets_CellClick);
             // 
             // label1
             // 
@@ -70,6 +71,7 @@
             this.buttonSendRequest.TabIndex = 2;
             this.buttonSendRequest.Text = "Send Emergency Maintenance Request";
             this.buttonSendRequest.UseVisualStyleBackColor = true;
+            this.buttonSendRequest.Click += new System.EventHandler(this.buttonSendRequest_Click);
             // 
             // ID
             // 

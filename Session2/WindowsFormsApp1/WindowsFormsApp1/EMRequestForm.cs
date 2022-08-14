@@ -25,6 +25,7 @@ namespace WindowsFormsApp1
         public EMRequestForm(int emId)
         {
             InitializeComponent();
+            this.BackColor = Color.FromArgb(0, 92, 185);
 
             Em = ent.EmergencyMaintenances.Where(x => x.ID == emId).FirstOrDefault();
 
