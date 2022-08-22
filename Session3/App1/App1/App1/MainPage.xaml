@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:app1="clr-namespace:App1" xmlns:models="clr-namespace:App1.models"
-             x:Class="App1.MainPage">
+             x:Class="App1.MainPage" Title="PM List">
 
     <!--<ContentPage.BindingContext>
         <app1:MainPage/>
@@ -13,7 +13,7 @@
                 <Label Text="Active Date :"
                        FontSize="18"
                        VerticalOptions="CenterAndExpand"/>
-                <DatePicker/>
+                <DatePicker x:Name="activeDatePicker" DateSelected="activeDatePicker_DateSelected"/>
             </StackLayout>
 
             <ListView ItemsSource="{Binding PMList}" HasUnevenRows="True" Margin="10">
@@ -21,15 +21,20 @@
                     <DataTemplate x:DataType="models:PMList">
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="10">
-                                <Frame HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Center" VerticalOptions="Center" Margin="0" Padding="0" BackgroundColor="{Binding Color}">
-                                </Frame>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
+                                <Frame HeightRequest="40" WidthRequest="40" CornerRadius="20" 
+                                       HorizontalOptions="Start" VerticalOptions="Center" Padding="0" BackgroundColor="{Binding Color}"/>
                                 <StackLayout>
                                     <Label Text="{Binding AssetName}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding ID}" FontAttributes="Bold"/>
                                     <Label Text="{Binding AssetSN}"/>
                                     <Label Text="{Binding TaskName}"/>
                                     <Label Text="{Binding TaskDesc}"/>
                                 </StackLayout>
-                                <CheckBox IsChecked="{Binding TaskDone}" HorizontalOptions="EndAndExpand"/>
+
+                                <CheckBox IsChecked="{Binding TaskDone}" IsEnabled="False" HorizontalOptions="EndAndExpand"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -39,14 +44,19 @@
             <ImageButton 
                 Source="add" Margin="10"
                 BackgroundColor="Transparent"
-                WidthRequest="50" HorizontalOptions="EndAndExpand"/>
+                WidthRequest="50" HorizontalOptions="EndAndExpand"
+                Clicked="ImageButton_Clicked"/>
 
             <StackLayout Orientation="Horizontal" Margin="10, 0, 10, 10">
-                <Picker Title="Asset Name" WidthRequest="130" ItemsSource="{Binding AssetList}" 
-                        ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedAsset, Mode=TwoWay}"/>
-                <Picker Title="Select Task" WidthRequest="130" ItemsSource="{Binding TaskList}" 
-                        ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedTask, Mode=TwoWay}"/>
-                <Label Text="Clear Filter" TextColor="Blue" VerticalOptions="EndAndExpand"/>
+                <Picker Title="Asset Name" WidthRequest="130" ItemsSource="{Binding AssetList}" x:Name="AssetPicker"
+                        ItemDisplayBinding="{Binding Name}" SelectedIndexChanged="AssetPicker_SelectedIndexChanged"/>
+                <Picker Title="Select Task" WidthRequest="130" ItemsSource="{Binding TaskList}" x:Name="TaskPicker"
+                        ItemDisplayBinding="{Binding Name}" SelectedIndexChanged="TaskPicker_SelectedIndexChanged"/>
+                <Label Text="Clear Filter" TextColor="Blue" VerticalOptions="EndAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_TappedFilterLabel"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

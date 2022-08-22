@@ -13,7 +13,7 @@ namespace App1.services
         string url = "http://10.105.13.82:45456/api/get/";
         HttpClient conn = new HttpClient();
 
-        public async Task<List<PMList>> GetActiveTask(string date)
+        public async Task<List<PMList>> GetActiveTask(DateTime date)
         {
             try
             {
@@ -21,6 +21,22 @@ namespace App1.services
                 var response = await conn.GetStringAsync(url);
                 var result = JsonConvert.DeserializeObject<List<PMList>>(response);
                 return new List<PMList>(result);
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return null;
+            }
+        }
+
+        public async Task<string> ChangeTaskStatus(long pmId)
+        {
+            try
+            {
+                string url = $"{this.url}ChangeTaskStatus?pmId={pmId}";
+                var response = await conn.GetStringAsync(url);
+                var result = JsonConvert.DeserializeObject<string>(response);
+                return result;
             }
             catch (Exception err)
             {

@@ -1,5 +1,6 @@
 ﻿using App1.models;
 using App1.services;
+using App1.views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,7 @@ namespace App1
     public partial class MainPage : ContentPage
     {
         public List<Temp> AssetList { get; set; }
-        public Temp SelectedAsset { get; set; }
         public List<Temp> TaskList { get; set; }
-        public Temp SelectedTask { get; set; }
 
         private List<PMList> _pmList;
 
@@ -25,7 +24,7 @@ namespace App1
             set { _pmList = value; OnPropertyChanged(); }
         }
 
-
+        public List<PMList> tempPMList { get; set; }
         public MainPage()
         {
             InitializeComponent();
@@ -46,7 +45,7 @@ namespace App1
             TaskList.Add(new Temp { Id = 6, Name = "Inspect cord and cord placement" });
             TaskList.Add(new Temp { Id = 7, Name = "Pull each pump and reset" });
 
-            this.loadDataAsync();
+            _ = this.loadDataAsync();
             this.BindingContext = this;
         }
 
@@ -54,8 +53,65 @@ namespace App1
 
         private async Task loadDataAsync()
         {
-            var result = await getService.GetActiveTask("");
+            var result = await getService.GetActiveTask(activeDatePicker.Date);
             PMList = new List<PMList>(result);
+            tempPMList = PMList;
+        }
+        private async Task changeTaskStatusAsync(long pmid)
+        {
+            var result = await getService.ChangeTaskStatus(pmid);
+
+            if (result == "success")
+            {
+                _ = DisplayAlert("Alert", "Status Successfully Changed", "Ok");
+            }
+
+            _ = this.loadDataAsync(); 
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var pm = (PMList)(sender as StackLayout).BindingContext;
+
+            _ = this.changeTaskStatusAsync(pm.ID);
+        }
+
+        private void activeDatePicker_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            _ = this.loadDataAsync();
+        }
+
+        private void TapGestureRecognizer_TappedFilterLabel(object sender, EventArgs e)
+        {
+            AssetPicker.SelectedIndex = -1;
+            TaskPicker.SelectedIndex = -1;
+            _ = this.loadDataAsync();
+        }
+
+        private void AssetPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (AssetPicker.SelectedIndex != -1)
+            {
+                PMList = tempPMList;
+                var selectedAsset = (Temp) AssetPicker.SelectedItem;
+                PMList = PMList.Where(x => x.AssetID == selectedAsset.Id).ToList();
+            }
+        }
+
+        private void TaskPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TaskPicker.SelectedIndex != -1)
+            {
+                PMList = tempPMList;
+                var selectedTask = (Temp)TaskPicker.SelectedItem;
+                PMList = PMList.Where(x => x.AssetID == selectedTask.Id).ToList();
+            }
+        }
+
+        private void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new NavigationPage();
+            App.Current.MainPage.Navigation.PushAsync(new CreatePMPage());
         }
     }
 }

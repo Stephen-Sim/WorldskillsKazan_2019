@@ -10,16 +10,15 @@ namespace WebApplication1.Controllers
 {
     public class GetController : ApiController
     {
-        WSC2019_Session3Entities ent = new WSC2019_Session3Entities();
+        WSC2019_Session3Entities ent;
         
         [HttpGet]
-        public object GetActiveTask(string activeDate)
+        public object GetActiveTask(DateTime activeDate)
         {
-            var ActiveDate = (activeDate == null) ? DateTime.Now : DateTime.ParseExact(activeDate, "yyyy-MM-dd", null);
-            var ActiveDateAfter4days = ActiveDate.AddDays(4);
+            ent = new WSC2019_Session3Entities();
 
-            var getPmList = ent.PMTasks
-                .Where(x => x.ScheduleDate == null || x.ScheduleDate <= ActiveDateAfter4days)
+            var getPmList = ent.PMTasks.ToList()
+                .Where(x => x.ScheduleDate == null || x.ScheduleDate.Value.Date <= activeDate.AddDays(4).Date)
                 .OrderBy(x => x.PMScheduleTypeID).ThenBy(x => x.TaskDone).ToList().Select(x => new
                 {
                     x.ID,
@@ -55,32 +54,32 @@ namespace WebApplication1.Controllers
                             return "gray";
                         }
 
-                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate < ActiveDate && x.TaskDone == true)
+                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate < activeDate && x.TaskDone == true)
                         {
                             return "orange";
                         }
 
-                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate < ActiveDate && x.TaskDone == false)
+                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate < activeDate && x.TaskDone == false)
                         {
                             return "red";
                         }
 
-                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate == ActiveDate && x.TaskDone == false)
+                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate == activeDate && x.TaskDone == false)
                         {
                             return "black";
                         }
 
-                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate == ActiveDate && x.TaskDone == true)
+                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate == activeDate && x.TaskDone == true)
                         {
                             return "green";
                         }
 
-                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate > ActiveDate && x.TaskDone == false)
+                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate > activeDate && x.TaskDone == false)
                         {
                             return "purple";
                         }
 
-                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate > ActiveDate && x.TaskDone == true)
+                        if (x.PMScheduleTypeID == 2 && x.ScheduleDate > activeDate && x.TaskDone == true)
                         {
                             return "black";
                         }
@@ -90,6 +89,24 @@ namespace WebApplication1.Controllers
                 });
 
             return getPmList;
+        }
+
+        [HttpGet]
+        public object ChangeTaskStatus(long pmId)
+        {
+            ent = new WSC2019_Session3Entities();
+            try
+            {
+                var pm = ent.PMTasks.FirstOrDefault(x => x.ID == pmId);
+                pm.TaskDone = !pm.TaskDone;
+                ent.SaveChanges();
+
+                return Ok("success");
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
         }
     }
 }
