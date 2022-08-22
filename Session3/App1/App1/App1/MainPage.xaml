@@ -1,24 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:app1="clr-namespace:App1" xmlns:models="clr-namespace:App1.models"
              x:Class="App1.MainPage">
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+    <!--<ContentPage.BindingContext>
+        <app1:MainPage/>
+    </ContentPage.BindingContext>-->
+
+    <ContentPage.Content>
+        <StackLayout Margin="5">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Active Date :"
+                       FontSize="18"
+                       VerticalOptions="CenterAndExpand"/>
+                <DatePicker/>
+            </StackLayout>
+
+            <ListView ItemsSource="{Binding PMList}" HasUnevenRows="True" Margin="10">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:PMList">
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Frame HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Center" VerticalOptions="Center" Margin="0" Padding="0" BackgroundColor="{Binding Color}">
+                                </Frame>
+                                <StackLayout>
+                                    <Label Text="{Binding AssetName}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding AssetSN}"/>
+                                    <Label Text="{Binding TaskName}"/>
+                                    <Label Text="{Binding TaskDesc}"/>
+                                </StackLayout>
+                                <CheckBox IsChecked="{Binding TaskDone}" HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ImageButton 
+                Source="add" Margin="10"
+                BackgroundColor="Transparent"
+                WidthRequest="50" HorizontalOptions="EndAndExpand"/>
+
+            <StackLayout Orientation="Horizontal" Margin="10, 0, 10, 10">
+                <Picker Title="Asset Name" WidthRequest="130" ItemsSource="{Binding AssetList}" 
+                        ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedAsset, Mode=TwoWay}"/>
+                <Picker Title="Select Task" WidthRequest="130" ItemsSource="{Binding TaskList}" 
+                        ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedTask, Mode=TwoWay}"/>
+                <Label Text="Clear Filter" TextColor="Blue" VerticalOptions="EndAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
 
 </ContentPage>

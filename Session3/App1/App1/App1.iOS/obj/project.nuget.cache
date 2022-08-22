@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "gQTeJhkMmrIknPOsWRIruv2bmdjQQyEcoZemo0EKrfjYpb4/G0bd8sSbKj7mVUF/vAc8lz0pv/GXpQ3INyfOBQ==",
+  "dgSpecHash": "GxkrjJeJX5wDwE+bUqrOWEpTTy9u0AHwqEG0B7XMGesY8bHfKOPZAUvos8mybEJ/+R+pLodpKE7j5BpKQkdLCA==",
   "success": true,
   "projectFilePath": "C:\\Users\\USER\\Desktop\\WSC2019_Kazan\\Session3\\App1\\App1\\App1.iOS\\App1.iOS.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\USER\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512"
