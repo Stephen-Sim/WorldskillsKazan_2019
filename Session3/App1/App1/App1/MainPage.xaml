@@ -28,7 +28,6 @@
                                        HorizontalOptions="Start" VerticalOptions="Center" Padding="0" BackgroundColor="{Binding Color}"/>
                                 <StackLayout>
                                     <Label Text="{Binding AssetName}" FontAttributes="Bold"/>
-                                    <Label Text="{Binding ID}" FontAttributes="Bold"/>
                                     <Label Text="{Binding AssetSN}"/>
                                     <Label Text="{Binding TaskName}"/>
                                     <Label Text="{Binding TaskDesc}"/>

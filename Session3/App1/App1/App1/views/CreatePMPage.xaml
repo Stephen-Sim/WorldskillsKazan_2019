@@ -1,18 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:App1.views" xmlns:models="clr-namespace:App1.models"
              x:Class="App1.views.CreatePMPage"
              Title="Create PM">
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Back" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="10">
+            <Picker Title="Task Name" ItemsSource="{Binding TaskList}" ItemDisplayBinding="{Binding Name}"/>
+
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Picker x:Name="AssetPicker" Title="Asset Name" WidthRequest="230" ItemsSource="{Binding AssetList}" ItemDisplayBinding="{Binding Name}"/>
+                    <Label Text="Add to List" VerticalOptions="Center" TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapLabelGestureRecognizer_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+                <ListView ItemsSource="{Binding SelectedAssetList}" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Temp">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Margin="10">
+                                    <Frame BackgroundColor="Gray" CornerRadius="50" WidthRequest="10" HeightRequest="10"/>
+                                    <Label Text="{Binding Name}" FontSize="18" VerticalOptions="Center"/>
+                                    <Button Text="X" CommandParameter="{Binding Id}" Clicked="removeAsset_Clicked" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand"/>
+                                </StackLayout>    
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <StackLayout HeightRequest="230" Margin="10">
+                    <Picker x:Name="ModelPicker" Title="Schedule Models" ItemsSource="{Binding ModelList}" ItemDisplayBinding="{Binding Name}" SelectedIndexChanged="Picker_SelectedIndexChanged"/>
+                    <StackLayout x:Name="TimeStackLayout" Margin="10">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="calendar"/>
+                            <DatePicker x:Name="StartDate"/>
+                            <Image Source="calendar"/>
+                            <DatePicker x:Name="EndDate"/>
+                        </StackLayout>
+                        
+                        <StackLayout x:Name="DayStackLayout">
+                            <Editor Placeholder="Number of Days to Run" Keyboard="Numeric"/>
+                        </StackLayout>
+
+                        <StackLayout  x:Name="WeekStackLayout">
+                            <Picker Title="Week Day to Run" ItemsSource="{Binding WeekDayList}"/>
+                            <Editor Placeholder="Number of Weeks to Run" Keyboard="Numeric"/>
+                        </StackLayout>
+
+                        <StackLayout  x:Name="MonthStackLayout">
+                            <Picker Title="Month Day to Run" ItemsSource="{Binding MonthDayList}"/>
+                            <Editor Placeholder="Number of Months to Run" Keyboard="Numeric"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <Editor />
+                    <StackLayout x:Name="RunStackLayout">
+                        <Editor Placeholder="Enter the total Distance in kilometer" Keyboard="Numeric"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End" Margin="10">
+                    <Button Text="Submit" BackgroundColor="Transparent" TextColor="Blue"/>
+                    <Button Text="Cancel" BackgroundColor="Transparent" TextColor="Blue" Clicked="ButtonCancel_Clicked"/>
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
