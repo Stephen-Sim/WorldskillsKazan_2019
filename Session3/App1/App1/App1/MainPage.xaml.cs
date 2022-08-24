@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -61,7 +62,7 @@ namespace App1
         {
             var result = await getService.ChangeTaskStatus(pmid);
 
-            if (result == "success")
+            if (result == HttpStatusCode.OK)
             {
                 _ = DisplayAlert("Alert", "Status Successfully Changed", "Ok");
             }

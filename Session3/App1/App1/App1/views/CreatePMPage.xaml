@@ -10,7 +10,7 @@
 
     <ContentPage.Content>
         <StackLayout Margin="10">
-            <Picker Title="Task Name" ItemsSource="{Binding TaskList}" ItemDisplayBinding="{Binding Name}"/>
+            <Picker x:Name="TaskPicker" Title="Task Name" ItemsSource="{Binding TaskList}" ItemDisplayBinding="{Binding Name}"/>
 
             <StackLayout>
                 <StackLayout Orientation="Horizontal">
@@ -41,33 +41,32 @@
                     <StackLayout x:Name="TimeStackLayout" Margin="10">
                         <StackLayout Orientation="Horizontal">
                             <Image Source="calendar"/>
-                            <DatePicker x:Name="StartDate"/>
+                            <DatePicker x:Name="StartDatePicker"/>
                             <Image Source="calendar"/>
-                            <DatePicker x:Name="EndDate"/>
+                            <DatePicker x:Name="EndDatePicker"/>
                         </StackLayout>
                         
                         <StackLayout x:Name="DayStackLayout">
-                            <Editor Placeholder="Number of Days to Run" Keyboard="Numeric"/>
+                            <Editor x:Name="DaystoRunEditor" Placeholder="Number of Days to Run" Keyboard="Numeric"/>
                         </StackLayout>
 
                         <StackLayout  x:Name="WeekStackLayout">
-                            <Picker Title="Week Day to Run" ItemsSource="{Binding WeekDayList}"/>
-                            <Editor Placeholder="Number of Weeks to Run" Keyboard="Numeric"/>
+                            <Picker x:Name="DayofWeekPicker" Title="Week Day to Run" ItemsSource="{Binding WeekDayList}"/>
+                            <Editor x:Name="WeekstoRunEditor" Placeholder="Number of Weeks to Run" Keyboard="Numeric"/>
                         </StackLayout>
 
                         <StackLayout  x:Name="MonthStackLayout">
-                            <Picker Title="Month Day to Run" ItemsSource="{Binding MonthDayList}"/>
-                            <Editor Placeholder="Number of Months to Run" Keyboard="Numeric"/>
+                            <Picker x:Name="DayofMonthPicker" Title="Month Day to Run" ItemsSource="{Binding MonthDayList}"/>
+                            <Editor x:Name="MonthstoRunEditor" Placeholder="Number of Months to Run" Keyboard="Numeric"/>
                         </StackLayout>
                     </StackLayout>
-                    <Editor />
                     <StackLayout x:Name="RunStackLayout">
                         <Editor Placeholder="Enter the total Distance in kilometer" Keyboard="Numeric"/>
                     </StackLayout>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="End" Margin="10">
-                    <Button Text="Submit" BackgroundColor="Transparent" TextColor="Blue"/>
+                    <Button Text="Submit" BackgroundColor="Transparent" TextColor="Blue" Clicked="ButtonSubmit_Clicked"/>
                     <Button Text="Cancel" BackgroundColor="Transparent" TextColor="Blue" Clicked="ButtonCancel_Clicked"/>
                 </StackLayout>
             </StackLayout>

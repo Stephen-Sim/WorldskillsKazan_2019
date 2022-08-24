@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,19 +30,35 @@ namespace App1.services
             }
         }
 
-        public async Task<string> ChangeTaskStatus(long pmId)
+        public async Task<HttpStatusCode> ChangeTaskStatus(long pmId)
         {
             try
             {
                 string url = $"{this.url}ChangeTaskStatus?pmId={pmId}";
-                var response = await conn.GetStringAsync(url);
-                var result = JsonConvert.DeserializeObject<string>(response);
-                return result;
+                var response = await conn.GetAsync(url);
+                return response.StatusCode;
             }
             catch (Exception err)
             {
                 Console.WriteLine(err.Message);
-                return null;
+                return HttpStatusCode.BadRequest;
+            }
+        }
+
+        public async Task<HttpStatusCode> StorePMTask(PMTaskRequest pmTaskRequest)
+        {
+            try
+            {
+                string url = $"{this.url}StorePMTask";
+                string json = JsonConvert.SerializeObject(pmTaskRequest);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await conn.PostAsync(url, content);
+                return response.StatusCode;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return HttpStatusCode.BadRequest;
             }
         }
     }

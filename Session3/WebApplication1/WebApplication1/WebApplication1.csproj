@@ -189,6 +189,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PMRequest.cs" />
     <Compile Include="Models\PMScheduleModel.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

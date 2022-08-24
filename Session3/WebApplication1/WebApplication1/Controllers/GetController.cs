@@ -101,12 +101,19 @@ namespace WebApplication1.Controllers
                 pm.TaskDone = !pm.TaskDone;
                 ent.SaveChanges();
 
-                return Ok("success");
+                return Ok();
             }
             catch (Exception err)
             {
                 return BadRequest(err.Message);
             }
+        }
+
+        [HttpPost]
+        public object StorePMTask(PMRequest pmRequest)
+        {
+            Console.WriteLine(pmRequest.ToString());
+            return Ok();
         }
     }
 }

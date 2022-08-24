@@ -1,4 +1,5 @@
 ﻿using App1.models;
+using App1.services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +65,7 @@ namespace App1.views
             WeekDayList.Add(DayOfWeek.Sunday);
 
             MonthDayList = new List<int>();
+
             for (int i = 1; i <= 31; i++)
             {
                 MonthDayList.Add(i);
@@ -146,6 +148,76 @@ namespace App1.views
             {
                 this.RunStackLayout.IsVisible = true;
                 this.TimeStackLayout.IsVisible = false;
+            }
+        }
+
+        private void ButtonSubmit_Clicked(object sender, EventArgs e)
+        {
+            if (TaskPicker.SelectedItem == null || SelectedAssetList.Count == 0 || ModelPicker.SelectedItem == null)
+            {
+                DisplayAlert("Alert", "All feilds are required!", "Ok");
+                return;
+            }
+
+            var selectedModelId = ((Temp)ModelPicker.SelectedItem).Id;
+
+            if (selectedModelId == 1 || selectedModelId == 2 || selectedModelId == 3)
+            {
+                if (StartDatePicker.Date >= EndDatePicker.Date)
+                {
+                    DisplayAlert("Alert", "End Date must greater than Start Date!", "Ok");
+                    return;
+                }
+
+                PMTaskRequest pMTaskRequest = new PMTaskRequest();
+                pMTaskRequest.TaskId = ((Temp)TaskPicker.SelectedItem).Id;
+                pMTaskRequest.AssetId = new List<long>();
+
+                foreach (var asset in SelectedAssetList)
+                {
+                    pMTaskRequest.AssetId.Add(asset.Id);
+                }
+
+                pMTaskRequest.StartDate = StartDatePicker.Date;
+                pMTaskRequest.EndDate = EndDatePicker.Date;
+
+                switch (selectedModelId)
+                {
+                    case 1:
+                        pMTaskRequest.DayIntervalToRun = int.Parse(DaystoRunEditor.Text);
+                        break;
+
+                    case 2:
+                        pMTaskRequest.DayofWeektoRun = (DayOfWeek) DayofWeekPicker.SelectedItem;
+                        pMTaskRequest.NumbersofWeekstoRun = int.Parse(WeekstoRunEditor.Text);
+                        break;
+
+                    case 3:
+                        pMTaskRequest.DayofMonthtoRun = int.Parse(DayofMonthPicker.SelectedItem.ToString());
+                        pMTaskRequest.NumberofMonthstoRun = int.Parse(MonthstoRunEditor.Text);
+                        break;
+
+                    default:
+                        break;
+                }
+
+                Console.WriteLine(pMTaskRequest.ToString());
+                _ = StorePMTaskAsync(pMTaskRequest);
+            }
+        }
+
+        GetService getService = new GetService();
+
+        private async Task StorePMTaskAsync(PMTaskRequest pMTaskRequest)
+        {
+            var result = await getService.StorePMTask(pMTaskRequest);
+            
+            if (result == System.Net.HttpStatusCode.OK)
+            {
+                await DisplayAlert("Alert", "PM Tasks are stored!", "Ok");
+
+                App.Current.MainPage = new NavigationPage();
+                _ = App.Current.MainPage.Navigation.PushAsync(new MainPage());
             }
         }
     }
