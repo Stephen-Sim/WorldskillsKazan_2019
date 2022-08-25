@@ -112,8 +112,116 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public object StorePMTask(PMRequest pmRequest)
         {
-            Console.WriteLine(pmRequest.ToString());
-            return Ok();
+            ent = new WSC2019_Session3Entities();
+            try
+            {
+                for (int i = 0; i < pmRequest.AssetId.Count; i++)
+                {
+                    if (pmRequest.ModelId != 4)
+                    {
+                        var startDate = pmRequest.StartDate;
+                        var endDate = pmRequest.EndDate;
+
+                        if (pmRequest.TaskId == 1)
+                        {
+                            int dayInterval = (int)pmRequest.DayIntervalToRun;
+
+                            for (var idate = startDate; idate <= endDate; idate = idate.AddDays(dayInterval))
+                            {
+                                PMTask pMTask = new PMTask();
+                                pMTask.AssetID = pmRequest.AssetId[i];
+                                pMTask.PMScheduleTypeID = 2;
+                                pMTask.ScheduleDate = idate;
+                                pMTask.TaskID = pmRequest.TaskId;
+                                pMTask.TaskDone = false;
+                                ent.PMTasks.Add(pMTask);
+                                ent.SaveChanges();
+                            }
+                        }
+                        else if (pmRequest.ModelId == 2)
+                        {
+                            int dayInterval = (int)pmRequest.NumbersofWeekstoRun * 7;
+                            DayOfWeek dayOfWeek = (DayOfWeek)pmRequest.DayofWeektoRun;
+
+                            while (startDate <= endDate)
+                            {
+                                if (startDate.DayOfWeek == dayOfWeek)
+                                {
+                                    PMTask pMTask = new PMTask();
+                                    pMTask.AssetID = pmRequest.AssetId[i];
+                                    pMTask.PMScheduleTypeID = 2;
+                                    pMTask.ScheduleDate = startDate;
+                                    pMTask.TaskID = pmRequest.TaskId;
+                                    pMTask.TaskDone = false;
+                                    ent.PMTasks.Add(pMTask);
+                                    ent.SaveChanges();
+
+                                    startDate = startDate.AddDays(dayInterval);
+                                    continue;
+                                }
+
+                                startDate = startDate.AddDays(1);
+                            }
+                        }
+                        else if (pmRequest.ModelId == 3)
+                        {
+                            int monthInterval = (int)pmRequest.NumberofMonthstoRun;
+                            int dayOfMonth = (int)pmRequest.DayofMonthtoRun;
+
+                            while (startDate <= endDate)
+                            {
+                                if (startDate.Day == dayOfMonth)
+                                {
+                                    PMTask pMTask = new PMTask();
+                                    pMTask.AssetID = pmRequest.AssetId[i];
+                                    pMTask.PMScheduleTypeID = 2;
+                                    pMTask.ScheduleDate = startDate;
+                                    pMTask.TaskID = pmRequest.TaskId;
+                                    pMTask.TaskDone = false;
+                                    ent.PMTasks.Add(pMTask);
+                                    ent.SaveChanges();
+
+                                    startDate = startDate.AddMonths(monthInterval);
+                                    continue;
+                                }
+
+                                startDate = startDate.AddDays(1);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        int xKilomter = (int)pmRequest.XKilometerTorun;
+                        int startRange = (int) pmRequest.StartRangeKilometer;
+                        int endRange = (int) pmRequest.EndRangeKilometer;
+
+                        var checkPMTask = ent.PMTasks.Where(x => x.TaskID == pmRequest.TaskId && x.ScheduleKilometer != null && x.ScheduleKilometer >= startRange && x.ScheduleKilometer <= endRange).ToList();
+
+                        if (checkPMTask.Any())
+                        {
+                            return BadRequest("Task is already existed!!");
+                        }
+
+                        for (int j = startRange; j < endRange; j+=xKilomter)
+                        {
+                            PMTask pMTask = new PMTask();
+                            pMTask.AssetID = pmRequest.AssetId[i];
+                            pMTask.PMScheduleTypeID = 1;
+                            pMTask.ScheduleKilometer = j;
+                            pMTask.TaskID = pmRequest.TaskId;
+                            pMTask.TaskDone = false;
+                            ent.PMTasks.Add(pMTask);
+                            ent.SaveChanges();
+                        }
+                    }
+                }
+                return Ok();
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return BadRequest();
+            }
         }
     }
 }

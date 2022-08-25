@@ -161,6 +161,16 @@ namespace App1.views
 
             var selectedModelId = ((Temp)ModelPicker.SelectedItem).Id;
 
+            PMTaskRequest pMTaskRequest = new PMTaskRequest();
+            pMTaskRequest.ModelId = selectedModelId;
+            pMTaskRequest.TaskId = ((Temp)TaskPicker.SelectedItem).Id;
+            pMTaskRequest.AssetId = new List<long>();
+
+            foreach (var asset in SelectedAssetList)
+            {
+                pMTaskRequest.AssetId.Add(asset.Id);
+            }
+
             if (selectedModelId == 1 || selectedModelId == 2 || selectedModelId == 3)
             {
                 if (StartDatePicker.Date >= EndDatePicker.Date)
@@ -169,36 +179,51 @@ namespace App1.views
                     return;
                 }
 
-                PMTaskRequest pMTaskRequest = new PMTaskRequest();
-                pMTaskRequest.TaskId = ((Temp)TaskPicker.SelectedItem).Id;
-                pMTaskRequest.AssetId = new List<long>();
-
-                foreach (var asset in SelectedAssetList)
-                {
-                    pMTaskRequest.AssetId.Add(asset.Id);
-                }
-
                 pMTaskRequest.StartDate = StartDatePicker.Date;
                 pMTaskRequest.EndDate = EndDatePicker.Date;
 
-                switch (selectedModelId)
+                try
                 {
-                    case 1:
+                    if (selectedModelId == 1)
+                    {
                         pMTaskRequest.DayIntervalToRun = int.Parse(DaystoRunEditor.Text);
-                        break;
-
-                    case 2:
-                        pMTaskRequest.DayofWeektoRun = (DayOfWeek) DayofWeekPicker.SelectedItem;
+                    }
+                    else if (selectedModelId == 2)
+                    {
+                        pMTaskRequest.DayofWeektoRun = (DayOfWeek)DayofWeekPicker.SelectedItem;
                         pMTaskRequest.NumbersofWeekstoRun = int.Parse(WeekstoRunEditor.Text);
-                        break;
-
-                    case 3:
+                    }
+                    else if (selectedModelId == 3)
+                    {
                         pMTaskRequest.DayofMonthtoRun = int.Parse(DayofMonthPicker.SelectedItem.ToString());
                         pMTaskRequest.NumberofMonthstoRun = int.Parse(MonthstoRunEditor.Text);
-                        break;
+                    }
+                }
+                catch (Exception)
+                {
+                    DisplayAlert("Alert", "All feilds are required with the valid input!!!", "Ok");
+                    return;
+                }
+            }
+            else
+            {
+                try
+                {
+                    pMTaskRequest.XKilometerTorun = int.Parse(XKmEditor.Text);
+                    pMTaskRequest.StartRangeKilometer = int.Parse(StartRangeEditor.Text);
+                    pMTaskRequest.EndRangeKilometer = int.Parse(EndRangeEditor.Text);
 
-                    default:
-                        break;
+                    if (pMTaskRequest.StartRangeKilometer >= pMTaskRequest.EndRangeKilometer)
+                    {
+                        DisplayAlert("Alert", "End range must greater than Start range!", "Ok");
+                        return;
+                    }
+
+                }
+                catch (Exception)
+                {
+                    DisplayAlert("Alert", "All feilds are required with the valid input!!!", "Ok");
+                    return;
                 }
 
                 Console.WriteLine(pMTaskRequest.ToString());
@@ -211,13 +236,17 @@ namespace App1.views
         private async Task StorePMTaskAsync(PMTaskRequest pMTaskRequest)
         {
             var result = await getService.StorePMTask(pMTaskRequest);
-            
+
             if (result == System.Net.HttpStatusCode.OK)
             {
                 await DisplayAlert("Alert", "PM Tasks are stored!", "Ok");
 
                 App.Current.MainPage = new NavigationPage();
                 _ = App.Current.MainPage.Navigation.PushAsync(new MainPage());
+            }
+            else
+            {
+                await DisplayAlert("Alert", "The Task(s) failed to store. Data might already exists.", "Ok");
             }
         }
     }

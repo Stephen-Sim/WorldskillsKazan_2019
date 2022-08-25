@@ -27,8 +27,8 @@
                         <DataTemplate x:DataType="models:Temp">
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" Margin="10">
-                                    <Frame BackgroundColor="Gray" CornerRadius="50" WidthRequest="10" HeightRequest="10"/>
-                                    <Label Text="{Binding Name}" FontSize="18" VerticalOptions="Center"/>
+                                    <Frame BackgroundColor="Gray" CornerRadius="20" WidthRequest="40" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Center" Padding="0"/>
+                                    <Label Text="{Binding Name}" FontSize="15" VerticalOptions="Center"/>
                                     <Button Text="X" CommandParameter="{Binding Id}" Clicked="removeAsset_Clicked" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand"/>
                                 </StackLayout>    
                             </ViewCell>
@@ -61,7 +61,9 @@
                         </StackLayout>
                     </StackLayout>
                     <StackLayout x:Name="RunStackLayout">
-                        <Editor Placeholder="Enter the total Distance in kilometer" Keyboard="Numeric"/>
+                        <Editor x:Name="XKmEditor" Placeholder="Enter the X (km) task needs to perform" Keyboard="Numeric"/>
+                        <Editor x:Name="StartRangeEditor" Placeholder="Enter the start range (KM)" Keyboard="Numeric"/>
+                        <Editor x:Name="EndRangeEditor" Placeholder="Enter the end range (KM)" Keyboard="Numeric"/>
                     </StackLayout>
                 </StackLayout>
 
