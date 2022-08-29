@@ -22,7 +22,9 @@ namespace WebApplication1.Controllers
                 AssetID = x.ID,
                 x.AssetName,
                 x.AssetSN,
-                Location = x.DepartmentLocation.Location.Name
+                Location = x.DepartmentLocation.Location.Name,
+                Department = x.DepartmentLocation.Department.Name,
+                x.AssetGroupID
             });
         }
 
@@ -55,7 +57,9 @@ namespace WebApplication1.Controllers
                 AssetID = x.ID,
                 x.AssetName,
                 x.AssetSN,
-                Location = x.DepartmentLocation.Location.Name
+                Location = x.DepartmentLocation.Location.Name,
+                Department = x.DepartmentLocation.Department.Name,
+                x.AssetGroupID
             });
         }
 
@@ -138,6 +142,53 @@ namespace WebApplication1.Controllers
             catch (Exception err)
             {
                 Console.WriteLine(err.Message);
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        public object assetTransfer(AssetTransferRequest assetTransferRequest)
+        {
+            ent = new WSC2019_Session1Entities();
+            try
+            {
+                var asset = ent.Assets.FirstOrDefault(x => x.ID == assetTransferRequest.AssetID);
+
+
+                AssetTransferLog assetTransferLog = new AssetTransferLog();
+                assetTransferLog.AssetID = assetTransferRequest.AssetID;
+                assetTransferLog.FromAssetSN = asset.AssetSN;
+                assetTransferLog.FromDepartmentLocationID = asset.DepartmentLocationID;
+                assetTransferLog.TransferDate = DateTime.Now;
+
+                var whichDepartmentLocation = ent.DepartmentLocations.FirstOrDefault(x => x.DepartmentID == assetTransferRequest.NewDepartmentId && x.LocationID == assetTransferRequest.NewLocationId);
+
+                if (whichDepartmentLocation == null)
+                {
+                    whichDepartmentLocation = new DepartmentLocation();
+                    whichDepartmentLocation.DepartmentID = assetTransferRequest.NewDepartmentId;
+                    whichDepartmentLocation.LocationID = assetTransferRequest.NewLocationId;
+                    whichDepartmentLocation.StartDate = DateTime.Now;
+
+                    ent.DepartmentLocations.Add(whichDepartmentLocation);
+                    ent.SaveChanges();
+                }
+
+                assetTransferLog.ToDepartmentLocationID = whichDepartmentLocation.ID;
+
+                var whichAsset = ent.Assets.Where(x => x.DepartmentLocation.DepartmentID == assetTransferRequest.NewDepartmentId && x.AssetGroupID == assetTransferRequest.AssetGroupId).ToList().OrderByDescending(x => x.ID).FirstOrDefault();
+                var lastFourDigit = whichAsset == null ? "0001" : (int.Parse(whichAsset.AssetSN.Substring(7)) + 1).ToString("0000");
+                asset.AssetSN = $"{assetTransferRequest.NewDepartmentId.ToString().PadLeft(2, '0')}/{assetTransferRequest.AssetGroupId.ToString().PadLeft(2, '0')}/{lastFourDigit}";
+
+                assetTransferLog.ToAssetSN = asset.AssetSN;
+                ent.AssetTransferLogs.Add(assetTransferLog);
+                ent.Assets.Append(asset);
+                ent.SaveChanges();
+                return Ok();
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.InnerException.Message);
                 return BadRequest();
             }
         }

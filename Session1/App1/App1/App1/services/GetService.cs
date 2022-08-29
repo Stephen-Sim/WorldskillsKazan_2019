@@ -97,5 +97,22 @@ namespace App1.services
                 return null;
             }
         }
+
+        public async Task<HttpStatusCode> assetTransfer(AssetTransferRequest assetTransferRequest)
+        {
+            try
+            {
+                string url = $"{this.url}/assetTransfer";
+                var json = JsonConvert.SerializeObject(assetTransferRequest);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var res = await conn.PostAsync(url, content);
+                return res.StatusCode;
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return HttpStatusCode.BadRequest;
+            }
+        }
     }
 }

@@ -46,7 +46,7 @@
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                                         <ImageButton Source="edit" BackgroundColor="Transparent" CommandParameter="{Binding AssetID}" Clicked="EditImageButton_Clicked"/>
-                                        <ImageButton Source="transfer" BackgroundColor="Transparent" CommandParameter="{Binding AssetID}" Clicked="TransferImageButton_Clicked_1"/>
+                                        <ImageButton Source="transfer" BackgroundColor="Transparent" CommandParameter="{Binding .}" Clicked="TransferImageButton_Clicked"/>
                                         <ImageButton Source="history" BackgroundColor="Transparent" CommandParameter="{Binding AssetID}" Clicked="HistoryImageButton_Clicked"/>
                                     </StackLayout>
                                 </StackLayout>

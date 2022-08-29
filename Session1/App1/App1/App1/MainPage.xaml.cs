@@ -128,9 +128,10 @@ namespace App1
             App.Current.MainPage.Navigation.PushAsync(new AddAssetForm((long)(sender as ImageButton).CommandParameter));
         }
 
-        private void TransferImageButton_Clicked_1(object sender, EventArgs e)
+        private void TransferImageButton_Clicked(object sender, EventArgs e)
         {
-
+            App.Current.MainPage = new NavigationPage();
+            App.Current.MainPage.Navigation.PushAsync(new AssetTransferForm((AssetList)(sender as ImageButton).CommandParameter));
         }
 
         private void HistoryImageButton_Clicked(object sender, EventArgs e)
