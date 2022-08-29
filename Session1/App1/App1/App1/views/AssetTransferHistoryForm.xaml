@@ -1,15 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:App1.models"
              x:Class="App1.views.AssetTransferHistoryForm" Title="Transfer History">
     <ContentPage.Content>
         <StackLayout Margin="10">
             <Label Text="Transfer History"/>
-            <ListView>
+            <ListView ItemsSource="{Binding HistoryList}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="models:HistoryClass">
                         <ViewCell>
-                            
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="point"/>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Relocation Date"/>
+                                        <Label Text="{Binding TransferDate}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding OldDepartment}"/>
+                                        <Label Text="{Binding OldAssetSN}" TextColor="Red"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding NewDepartment}"/>
+                                        <Label Text="{Binding NewAssetSN}" TextColor="Red"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

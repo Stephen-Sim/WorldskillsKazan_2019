@@ -57,7 +57,7 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="{Binding AssetFromTotal}" VerticalOptions="Center"/>
-                    <ImageButton Source="add" HorizontalOptions="EndAndExpand" HeightRequest="50"/>
+                    <ImageButton Source="add" HorizontalOptions="EndAndExpand" HeightRequest="50" Clicked="AddImageButton_Clicked"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

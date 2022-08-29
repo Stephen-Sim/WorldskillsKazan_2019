@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:App1.views"
+             x:Class="App1.views.AddAssetForm"
+             Title="Asset Information">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <!--<ContentPage.BindingContext>
+        <views:AddAssetForm/>
+    </ContentPage.BindingContext>-->
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="10">
+                <Editor x:Name="AssetNameEditor" Placeholder="Asset Name"/>
+                <StackLayout Orientation="Horizontal">
+                    <Picker x:Name="DepartmentPicker" Title="Department" WidthRequest="180" ItemsSource="{Binding DepartmentList}" ItemDisplayBinding="{Binding Name}"/>
+                    <Picker x:Name="LocationPicker" Title="Location" WidthRequest="180" ItemsSource="{Binding LocationList}" ItemDisplayBinding="{Binding Name}"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Picker x:Name="AssetGroupPicker" Title="Asset Group" WidthRequest="180" ItemsSource="{Binding AssetGroupList}" ItemDisplayBinding="{Binding Name}"/>
+                    <Picker x:Name="EmployeePicker" Title="Accountable Party" WidthRequest="180" ItemsSource="{Binding EmployeeList}" ItemDisplayBinding="{Binding Name}"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Asset Description"/>
+                    <Editor x:Name="AssetDescEditor" Placeholder="Multi Line"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="calendar"/>
+                    <DatePicker x:Name="ExipredDatePicker"/>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="10">
+                        <Label Text="Asset SN"/>
+                        <Label Text="dd/gg/nnnn" FontAttributes="Bold"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                    <Button Text="Submit" BackgroundColor="Transparent" TextColor="Blue" Clicked="SubmitButton_Clicked"/>
+                    <Button Text="Cancel" BackgroundColor="Transparent" TextColor="Blue" Clicked="CancelButton_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

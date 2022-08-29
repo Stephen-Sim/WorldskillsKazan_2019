@@ -168,6 +168,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddAssetRequest.cs" />
     <Compile Include="Models\Asset.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

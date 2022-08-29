@@ -50,6 +50,7 @@ namespace App1
         public MainPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             AssetGroupList = new List<Temp>();
             AssetGroupList.Add(new Temp { ID = 1, Name = "Hydraulic" });
             AssetGroupList.Add(new Temp { ID = 3, Name = "Electrical" });
@@ -78,7 +79,7 @@ namespace App1
             AssetFromTotal = $"{AssetClassList.Count} assets from {totalAsset}";
         }
 
-        private async Task loadAssetDateAsync()
+        private async Task loadAssetDataAsync()
         {
             var assetgroup = (Temp)AssetGroupPicker.SelectedItem;
             var department = (Temp)DepartmentPicker.SelectedItem;
@@ -100,7 +101,7 @@ namespace App1
         {    
             if (AssetGroupPicker.SelectedItem != null && AssetGroupPicker.SelectedItem != null)
             {
-                _ = this.loadAssetDateAsync();
+                _ = this.loadAssetDataAsync();
             }
         }
 
@@ -108,7 +109,7 @@ namespace App1
         {
             if (EndDatePicker.Date > StartDatePicker.Date)
             {
-                _ = this.loadAssetDateAsync();
+                _ = this.loadAssetDataAsync();
             }
             else
             {
@@ -118,12 +119,13 @@ namespace App1
 
         private void SearchEditor_TextChanged(object sender, TextChangedEventArgs e)
         {
-            _ = this.loadAssetDateAsync();
+            _ = this.loadAssetDataAsync();
         }
 
         private void EditImageButton_Clicked(object sender, EventArgs e)
         {
-
+            App.Current.MainPage = new NavigationPage();
+            App.Current.MainPage.Navigation.PushAsync(new AddAssetForm((long)(sender as ImageButton).CommandParameter));
         }
 
         private void TransferImageButton_Clicked_1(object sender, EventArgs e)
@@ -135,6 +137,12 @@ namespace App1
         {
             App.Current.MainPage = new NavigationPage();
             App.Current.MainPage.Navigation.PushAsync(new AssetTransferHistoryForm((long)(sender as ImageButton).CommandParameter));
+        }
+
+        private void AddImageButton_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new NavigationPage();
+            App.Current.MainPage.Navigation.PushAsync(new AddAssetForm());
         }
     }
 }
