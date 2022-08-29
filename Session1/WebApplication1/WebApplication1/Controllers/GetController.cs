@@ -174,13 +174,13 @@ namespace WebApplication1.Controllers
                     ent.SaveChanges();
                 }
 
-                assetTransferLog.ToDepartmentLocationID = whichDepartmentLocation.ID;
-
                 var whichAsset = ent.Assets.Where(x => x.DepartmentLocation.DepartmentID == assetTransferRequest.NewDepartmentId && x.AssetGroupID == assetTransferRequest.AssetGroupId).ToList().OrderByDescending(x => x.ID).FirstOrDefault();
                 var lastFourDigit = whichAsset == null ? "0001" : (int.Parse(whichAsset.AssetSN.Substring(7)) + 1).ToString("0000");
                 asset.AssetSN = $"{assetTransferRequest.NewDepartmentId.ToString().PadLeft(2, '0')}/{assetTransferRequest.AssetGroupId.ToString().PadLeft(2, '0')}/{lastFourDigit}";
 
                 assetTransferLog.ToAssetSN = asset.AssetSN;
+                assetTransferLog.ToDepartmentLocationID = whichDepartmentLocation.ID;
+
                 ent.AssetTransferLogs.Add(assetTransferLog);
                 ent.Assets.Append(asset);
                 ent.SaveChanges();
