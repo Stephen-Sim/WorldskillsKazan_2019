@@ -70,14 +70,21 @@ namespace App1
             _ = this.loadDataAsync(); 
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             var pm = (PMList)(sender as StackLayout).BindingContext;
 
-            _ = this.changeTaskStatusAsync(pm.ID);
+            var result = await getService.ChangeTaskStatus(pm.ID);
+
+            if (result == HttpStatusCode.OK)
+            {
+                _ = DisplayAlert("Alert", "Status Successfully Changed", "Ok");
+            }
+
+            _ = this.loadDataAsync();
         }
 
-        private void activeDatePicker_DateSelected(object sender, DateChangedEventArgs e)
+        private  void activeDatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
             _ = this.loadDataAsync();
         }

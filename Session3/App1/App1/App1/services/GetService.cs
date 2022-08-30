@@ -11,7 +11,7 @@ namespace App1.services
 {
     public class GetService
     {
-        string url = "http://10.105.13.82:45456//api/get/";
+        string url = "http://10.105.13.82:45455/api/get/";
         HttpClient conn = new HttpClient();
 
         public async Task<List<PMList>> GetActiveTask(DateTime date)
