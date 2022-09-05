@@ -28,42 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.purchaseOrderManagmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseOrderManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warehouseManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewInventory = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInventory)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.purchaseOrderManagmentToolStripMenuItem,
+            this.purchaseOrderManagementToolStripMenuItem,
             this.warehouseManagementToolStripMenuItem,
             this.inventoryReportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1106, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // purchaseOrderManagmentToolStripMenuItem
+            // purchaseOrderManagementToolStripMenuItem
             // 
-            this.purchaseOrderManagmentToolStripMenuItem.Name = "purchaseOrderManagmentToolStripMenuItem";
-            this.purchaseOrderManagmentToolStripMenuItem.Size = new System.Drawing.Size(168, 20);
-            this.purchaseOrderManagmentToolStripMenuItem.Text = "Purchase Order Managment";
+            this.purchaseOrderManagementToolStripMenuItem.Name = "purchaseOrderManagementToolStripMenuItem";
+            this.purchaseOrderManagementToolStripMenuItem.Size = new System.Drawing.Size(174, 20);
+            this.purchaseOrderManagementToolStripMenuItem.Text = "Purchase Order Management";
             // 
             // warehouseManagementToolStripMenuItem
             // 
@@ -76,49 +76,57 @@
             this.inventoryReportToolStripMenuItem.Name = "inventoryReportToolStripMenuItem";
             this.inventoryReportToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
             this.inventoryReportToolStripMenuItem.Text = "Inventory Report";
+            this.inventoryReportToolStripMenuItem.Click += new System.EventHandler(this.inventoryReportToolStripMenuItem_Click);
             // 
-            // contextMenuStrip1
+            // dataGridViewInventory
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewInventory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.Column2,
             this.Column3,
+            this.Column2,
             this.Column4,
+            this.Column10,
             this.Column5,
             this.Column6,
             this.Column7,
-            this.Column8});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 27);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(776, 411);
-            this.dataGridView1.TabIndex = 2;
+            this.Column8,
+            this.Column9});
+            this.dataGridViewInventory.Location = new System.Drawing.Point(12, 27);
+            this.dataGridViewInventory.Name = "dataGridViewInventory";
+            this.dataGridViewInventory.Size = new System.Drawing.Size(1082, 434);
+            this.dataGridViewInventory.TabIndex = 1;
+            this.dataGridViewInventory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInventory_CellClick);
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "ID";
+            this.Column1.HeaderText = "ItemOrderID";
             this.Column1.Name = "Column1";
             this.Column1.Visible = false;
             // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Part Name";
-            this.Column2.Name = "Column2";
-            // 
             // Column3
             // 
-            this.Column3.HeaderText = "Transaction Type";
+            this.Column3.HeaderText = "OrderID";
             this.Column3.Name = "Column3";
+            this.Column3.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = " Part Name";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 120;
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "Date";
+            this.Column4.HeaderText = "Transaction Type";
             this.Column4.Name = "Column4";
+            this.Column4.Width = 180;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Date";
+            this.Column10.Name = "Column10";
+            this.Column10.Width = 120;
             // 
             // Column5
             // 
@@ -129,30 +137,37 @@
             // 
             this.Column6.HeaderText = "Source";
             this.Column6.Name = "Column6";
+            this.Column6.Width = 150;
             // 
             // Column7
             // 
             this.Column7.HeaderText = "Destination";
             this.Column7.Name = "Column7";
+            this.Column7.Width = 150;
             // 
             // Column8
             // 
-            this.Column8.HeaderText = "Actions";
+            this.Column8.HeaderText = "Action";
             this.Column8.Name = "Column8";
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "";
+            this.Column9.Name = "Column9";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
+            this.BackColor = System.Drawing.Color.DodgerBlue;
+            this.ClientSize = new System.Drawing.Size(1106, 473);
+            this.Controls.Add(this.dataGridViewInventory);
             this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Inventory Management";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInventory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,19 +176,20 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem purchaseOrderManagmentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseOrderManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem warehouseManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inventoryReportToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewInventory;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewLinkColumn Column8;
+        private System.Windows.Forms.DataGridViewLinkColumn Column9;
     }
 }
 

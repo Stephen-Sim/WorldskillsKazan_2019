@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WSC2019_Session5Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="RockTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="BackgroundColor" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WellLayers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WellID" Type="bigint" Nullable="false" />
+    <Property Name="RockTypeID" Type="bigint" Nullable="false" />
+    <Property Name="StartPoint" Type="bigint" Nullable="false" />
+    <Property Name="EndPoint" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Wells">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WellTypeID" Type="bigint" Nullable="false" />
+    <Property Name="WellName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GasOilDepth" Type="bigint" Nullable="false" />
+    <Property Name="Capacity" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WellTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_WellLayers_RockTypes">
+    <End Role="RockTypes" Type="Self.RockTypes" Multiplicity="1" />
+    <End Role="WellLayers" Type="Self.WellLayers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RockTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WellLayers">
+        <PropertyRef Name="RockTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WellLayers_Wells">
+    <End Role="Wells" Type="Self.Wells" Multiplicity="1" />
+    <End Role="WellLayers" Type="Self.WellLayers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Wells">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WellLayers">
+        <PropertyRef Name="WellID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Wells_WellTypes">
+    <End Role="WellTypes" Type="Self.WellTypes" Multiplicity="1" />
+    <End Role="Wells" Type="Self.Wells" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WellTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Wells">
+        <PropertyRef Name="WellTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WSC2019_Session5ModelStoreContainer">
+    <EntitySet Name="RockTypes" EntityType="Self.RockTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WellLayers" EntityType="Self.WellLayers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wells" EntityType="Self.Wells" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WellTypes" EntityType="Self.WellTypes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_WellLayers_RockTypes" Association="Self.FK_WellLayers_RockTypes">
+      <End Role="RockTypes" EntitySet="RockTypes" />
+      <End Role="WellLayers" EntitySet="WellLayers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WellLayers_Wells" Association="Self.FK_WellLayers_Wells">
+      <End Role="Wells" EntitySet="Wells" />
+      <End Role="WellLayers" EntitySet="WellLayers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wells_WellTypes" Association="Self.FK_Wells_WellTypes">
+      <End Role="WellTypes" EntitySet="WellTypes" />
+      <End Role="Wells" EntitySet="Wells" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e0130a86618045a8b3c93fe27d65e9b6" Name="Diagram1">
+        <EntityTypeShape EntityType="WSC2019_Session5Model.RockType" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_Session5Model.WellLayer" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_Session5Model.Well" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_Session5Model.WellType" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="WSC2019_Session5Model.FK_WellLayers_RockTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_Session5Model.FK_WellLayers_Wells" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_Session5Model.FK_Wells_WellTypes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

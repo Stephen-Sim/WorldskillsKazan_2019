@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:App1.models"
+             x:Class="App1.views.AddWellForm" Title="Well Information">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <StackLayout Orientation="Horizontal">
+                <Editor x:Name="WellNameEditor" Placeholder="Well Name" WidthRequest="220"/>
+                <Picker x:Name="WellTypePicker" ItemsSource="{Binding WellTypeList}" ItemDisplayBinding="{Binding Name}" Title="Well Type" WidthRequest="220"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Editor x:Name="GasDepthEditor" Placeholder="Depth of Gas or Oil Extraction" Keyboard="Numeric" WidthRequest="220"/>
+                <Editor x:Name="WellCapacityEditor" Placeholder="Well Capacity" Keyboard="Numeric" WidthRequest="220"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Rock Layers:"/>
+                <BoxView HeightRequest="1" BackgroundColor="LightGray"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Picker x:Name="RockPicker" ItemsSource="{Binding RockList}" ItemDisplayBinding="{Binding Name}" Title="Rock Layer" WidthRequest="180"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Editor x:Name="FromDepthEditor" Placeholder="From Depth" Keyboard="Numeric" WidthRequest="130"/>
+                    <Editor x:Name="ToDepthEditor" Placeholder="To Depth" Keyboard="Numeric" WidthRequest="130"/>
+                    <Label Text="Add Layer" TextColor="LightBlue" VerticalOptions="End">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+                <StackLayout>
+                    <ListView ItemsSource="{Binding AddedRockList}" HasUnevenRows="False">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:RockLayer">
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal">
+                                        <ImageButton Source="remove" Clicked="ImageButton_Clicked" CommandParameter="{Binding .}"/>
+                                        <StackLayout>
+                                            <Label Text="{Binding RockName}"/>
+                                            <Label Text="{Binding FromToDepth}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Button Text="Submit" HeightRequest="50" WidthRequest="100" HorizontalOptions="EndAndExpand" Clicked="Button_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

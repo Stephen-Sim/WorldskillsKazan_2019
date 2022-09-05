@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WSC2019_Session5ModelStoreContainer" CdmEntityContainer="WSC2019_Session5Entities">
+    <EntitySetMapping Name="RockTypes">
+      <EntityTypeMapping TypeName="WSC2019_Session5Model.RockType">
+        <MappingFragment StoreEntitySet="RockTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BackgroundColor" ColumnName="BackgroundColor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WellLayers">
+      <EntityTypeMapping TypeName="WSC2019_Session5Model.WellLayer">
+        <MappingFragment StoreEntitySet="WellLayers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WellID" ColumnName="WellID" />
+          <ScalarProperty Name="RockTypeID" ColumnName="RockTypeID" />
+          <ScalarProperty Name="StartPoint" ColumnName="StartPoint" />
+          <ScalarProperty Name="EndPoint" ColumnName="EndPoint" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wells">
+      <EntityTypeMapping TypeName="WSC2019_Session5Model.Well">
+        <MappingFragment StoreEntitySet="Wells">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WellTypeID" ColumnName="WellTypeID" />
+          <ScalarProperty Name="WellName" ColumnName="WellName" />
+          <ScalarProperty Name="GasOilDepth" ColumnName="GasOilDepth" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WellTypes">
+      <EntityTypeMapping TypeName="WSC2019_Session5Model.WellType">
+        <MappingFragment StoreEntitySet="WellTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

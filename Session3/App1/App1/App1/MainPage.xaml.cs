@@ -58,17 +58,6 @@ namespace App1
             PMList = new List<PMList>(result);
             tempPMList = PMList;
         }
-        private async Task changeTaskStatusAsync(long pmid)
-        {
-            var result = await getService.ChangeTaskStatus(pmid);
-
-            if (result == HttpStatusCode.OK)
-            {
-                _ = DisplayAlert("Alert", "Status Successfully Changed", "Ok");
-            }
-
-            _ = this.loadDataAsync(); 
-        }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {

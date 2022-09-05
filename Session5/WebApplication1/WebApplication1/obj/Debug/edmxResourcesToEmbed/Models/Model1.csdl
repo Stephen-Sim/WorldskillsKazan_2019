@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WSC2019_Session5Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="RockType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BackgroundColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="WellLayers" Relationship="Self.FK_WellLayers_RockTypes" FromRole="RockTypes" ToRole="WellLayers" />
+  </EntityType>
+  <EntityType Name="WellLayer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WellID" Type="Int64" Nullable="false" />
+    <Property Name="RockTypeID" Type="Int64" Nullable="false" />
+    <Property Name="StartPoint" Type="Int64" Nullable="false" />
+    <Property Name="EndPoint" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="RockType" Relationship="Self.FK_WellLayers_RockTypes" FromRole="WellLayers" ToRole="RockTypes" />
+    <NavigationProperty Name="Well" Relationship="Self.FK_WellLayers_Wells" FromRole="WellLayers" ToRole="Wells" />
+  </EntityType>
+  <EntityType Name="Well">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WellTypeID" Type="Int64" Nullable="false" />
+    <Property Name="WellName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GasOilDepth" Type="Int64" Nullable="false" />
+    <Property Name="Capacity" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="WellLayers" Relationship="Self.FK_WellLayers_Wells" FromRole="Wells" ToRole="WellLayers" />
+    <NavigationProperty Name="WellType" Relationship="Self.FK_Wells_WellTypes" FromRole="Wells" ToRole="WellTypes" />
+  </EntityType>
+  <EntityType Name="WellType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Wells" Relationship="Self.FK_Wells_WellTypes" FromRole="WellTypes" ToRole="Wells" />
+  </EntityType>
+  <Association Name="FK_WellLayers_RockTypes">
+    <End Role="RockTypes" Type="Self.RockType" Multiplicity="1" />
+    <End Role="WellLayers" Type="Self.WellLayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RockTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WellLayers">
+        <PropertyRef Name="RockTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WellLayers_Wells">
+    <End Role="Wells" Type="Self.Well" Multiplicity="1" />
+    <End Role="WellLayers" Type="Self.WellLayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Wells">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WellLayers">
+        <PropertyRef Name="WellID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Wells_WellTypes">
+    <End Role="WellTypes" Type="Self.WellType" Multiplicity="1" />
+    <End Role="Wells" Type="Self.Well" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WellTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Wells">
+        <PropertyRef Name="WellTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WSC2019_Session5Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="RockTypes" EntityType="Self.RockType" />
+    <EntitySet Name="WellLayers" EntityType="Self.WellLayer" />
+    <EntitySet Name="Wells" EntityType="Self.Well" />
+    <EntitySet Name="WellTypes" EntityType="Self.WellType" />
+    <AssociationSet Name="FK_WellLayers_RockTypes" Association="Self.FK_WellLayers_RockTypes">
+      <End Role="RockTypes" EntitySet="RockTypes" />
+      <End Role="WellLayers" EntitySet="WellLayers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WellLayers_Wells" Association="Self.FK_WellLayers_Wells">
+      <End Role="Wells" EntitySet="Wells" />
+      <End Role="WellLayers" EntitySet="WellLayers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wells_WellTypes" Association="Self.FK_Wells_WellTypes">
+      <End Role="WellTypes" EntitySet="WellTypes" />
+      <End Role="Wells" EntitySet="Wells" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
