@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yTJxUJ4iHhmhRrJV2GUOCkWGa/gt9HatcEXDQDbaCCLABOdWiPKOTxrFqcQ/sspDEaq9orZk0fT/pw9zshGUJg==",
+  "dgSpecHash": "6VsxMSTANiKfn5bfKpy5UYFNspkgzz8RgEnJL7x0zpZ7+NYQJiwvO+Lekbr2Xo730iObZlMHAMs94XNbRCOZCg==",
   "success": true,
   "projectFilePath": "C:\\Users\\USER\\Desktop\\WSC2019_Kazan\\Session5\\App1\\App1\\App1\\App1.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\USER\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\xam.plugin.connectivity\\3.2.0\\xam.plugin.connectivity.3.2.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512"
   ],

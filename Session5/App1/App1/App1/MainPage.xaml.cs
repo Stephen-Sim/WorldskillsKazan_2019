@@ -1,13 +1,14 @@
 ﻿using App1.models;
 using App1.services;
 using App1.views;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WebApplication1.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace App1
@@ -23,7 +24,6 @@ namespace App1
             get { return wellCapacity; }
             set { wellCapacity = value; OnPropertyChanged(); }
         }
-
 
         private List<Well> wellList;
 
@@ -48,6 +48,7 @@ namespace App1
             InitializeComponent();
 
             _ = this.loadDataAsync();
+
             this.BindingContext = this;
         }
 
