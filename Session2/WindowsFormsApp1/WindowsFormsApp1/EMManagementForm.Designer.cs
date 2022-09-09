@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.dataGridViewAssets = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonSendRequest = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AssetSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AssetName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastEMDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EMCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonSendRequest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAssets)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,25 +53,6 @@
             this.dataGridViewAssets.Size = new System.Drawing.Size(766, 304);
             this.dataGridViewAssets.TabIndex = 0;
             this.dataGridViewAssets.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAssets_CellClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Available Assets:";
-            // 
-            // buttonSendRequest
-            // 
-            this.buttonSendRequest.Location = new System.Drawing.Point(15, 389);
-            this.buttonSendRequest.Name = "buttonSendRequest";
-            this.buttonSendRequest.Size = new System.Drawing.Size(227, 23);
-            this.buttonSendRequest.TabIndex = 2;
-            this.buttonSendRequest.Text = "Send Emergency Maintenance Request";
-            this.buttonSendRequest.UseVisualStyleBackColor = true;
-            this.buttonSendRequest.Click += new System.EventHandler(this.buttonSendRequest_Click);
             // 
             // ID
             // 
@@ -103,7 +84,26 @@
             this.EMCount.Name = "EMCount";
             this.EMCount.Width = 180;
             // 
-            // EMManagement
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Available Assets:";
+            // 
+            // buttonSendRequest
+            // 
+            this.buttonSendRequest.Location = new System.Drawing.Point(15, 389);
+            this.buttonSendRequest.Name = "buttonSendRequest";
+            this.buttonSendRequest.Size = new System.Drawing.Size(227, 23);
+            this.buttonSendRequest.TabIndex = 2;
+            this.buttonSendRequest.Text = "Send Emergency Maintenance Request";
+            this.buttonSendRequest.UseVisualStyleBackColor = true;
+            this.buttonSendRequest.Click += new System.EventHandler(this.buttonSendRequest_Click);
+            // 
+            // EMManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -111,8 +111,9 @@
             this.Controls.Add(this.buttonSendRequest);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewAssets);
-            this.Name = "EMManagement";
+            this.Name = "EMManagementForm";
             this.Text = "Emergency Maintenance Management";
+            this.Load += new System.EventHandler(this.EMManagementForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAssets)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

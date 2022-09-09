@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +33,7 @@ namespace WindowsFormsApp1
             // TODO: This line of code loads data into the 'wSC2019_Session2DataSet.Priorities' table. You can move, or remove it, as needed.
             this.prioritiesTableAdapter.Fill(this.wSC2019_Session2DataSet.Priorities);
 
+            this.BackColor = Color.FromArgb(0, 92, 185);
         }
 
         private void buttonSubmit_Click(object sender, EventArgs e)

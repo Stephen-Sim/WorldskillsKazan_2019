@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +61,11 @@ namespace WindowsFormsApp1
             {
                 return;
             }
+        }
+
+        private void ManagerForm_Load(object sender, EventArgs e)
+        {
+            this.BackColor = Color.FromArgb(0, 92, 185);
         }
     }
 }

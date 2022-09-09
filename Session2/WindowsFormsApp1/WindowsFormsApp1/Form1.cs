@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,6 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            this.BackColor = Color.FromArgb(0, 92, 185);
         }
 
         public WSC2019_Session2Entities1 ent = new WSC2019_Session2Entities1();
@@ -57,6 +58,11 @@ namespace WindowsFormsApp1
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.BackColor = Color.FromArgb(0, 92, 185);
         }
     }
 }
