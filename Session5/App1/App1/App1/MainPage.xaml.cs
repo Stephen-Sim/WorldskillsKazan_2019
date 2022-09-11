@@ -2,6 +2,7 @@
 using App1.services;
 using App1.views;
 using Newtonsoft.Json;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,15 +42,54 @@ namespace App1
             set { wellLayerList = value; OnPropertyChanged(); }
         }
 
+
         public MainPage()
         {
             NavigationPage.SetHasNavigationBar(this, false);
 
             InitializeComponent();
 
-            _ = this.loadDataAsync();
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                _ = this.loadDataAsync();
+            }
 
+            update();
+           
             this.BindingContext = this;
+        }
+
+        bool lastConnect = true;
+
+        private async void update()
+        {
+            await Task.Delay(1000);
+
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                if (lastConnect != CrossConnectivity.Current.IsConnected)
+                {
+                    await DisplayAlert("alert", "Wifi Connection is Back!", "ok");
+                    _ = this.loadDataAsync();
+                }
+
+                EditButton.IsVisible = true;
+                AddButton.IsVisible = true;
+                lastConnect = true;
+            }
+            else
+            {
+                if (lastConnect != CrossConnectivity.Current.IsConnected)
+                {
+                    await DisplayAlert("alert", "Wifi Connection is Lost!", "ok");
+                }
+
+                lastConnect = false;
+                EditButton.IsVisible = false;
+                AddButton.IsVisible = false;
+            }
+
+            update();
         }
 
         public async Task loadDataAsync()
@@ -60,11 +100,14 @@ namespace App1
 
         private async void WellPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var SelectedWell = (Well) WellPicker.SelectedItem;
-            WellCapacity = $"{SelectedWell.Capacity} m2 ";
+            if (WellPicker.SelectedItem != null)
+            {
+                var SelectedWell = (Well) WellPicker.SelectedItem;
+                WellCapacity = $"{SelectedWell.Capacity} m2 ";
 
-            var res = await getService.GetWellLayers(SelectedWell.ID);
-            WellLayerList = new List<WellLayerRequest>(res);
+                var res = await getService.GetWellLayers(SelectedWell.ID);
+                WellLayerList = new List<WellLayerRequest>(res);
+            }
         }
 
         private void ImageButton_Clicked(object sender, EventArgs e)

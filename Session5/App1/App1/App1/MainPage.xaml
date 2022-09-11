@@ -3,20 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:WebApplication1.Models" xmlns:app1="clr-namespace:App1" xmlns:models1="clr-namespace:App1.models"
              x:Class="App1.MainPage">
 
-    <!--<ContentPage.BindingContext>
-        <app1:MainPage/>
-    </ContentPage.BindingContext>-->
-
     <ContentPage.Content>
         <StackLayout Margin="10">
             <StackLayout Orientation="Horizontal">
                 <Label Text="Well Name :" FontSize="15" VerticalOptions="Center"/>
                 <Picker x:Name="WellPicker" Title="Well Name" WidthRequest="180" ItemsSource="{Binding WellList}" ItemDisplayBinding="{Binding WellName}" SelectedIndexChanged="WellPicker_SelectedIndexChanged"/>
-                <Button Text="Edit" BackgroundColor="RoyalBlue" TextColor="White" HeightRequest="30" FontSize="12" Clicked="Button_Clicked"/>
+                <Button x:Name="EditButton" Text="Edit" BackgroundColor="RoyalBlue" TextColor="White" HeightRequest="30" FontSize="12" Clicked="Button_Clicked"/>
             </StackLayout>
 
             <StackLayout Margin="20">
-                    <ListView ItemsSource="{Binding WellLayerList}" HasUnevenRows="True">
+                    <ListView x:Name="WellLayerListView" ItemsSource="{Binding WellLayerList}" HasUnevenRows="True">
                         <ListView.ItemTemplate>
                         <DataTemplate x:DataType="models1:WellLayerRequest">
                             <ViewCell>
@@ -36,7 +32,7 @@
             <StackLayout Orientation="Horizontal">
                 <Label Text="Well Capacity : "/>
                 <Label Text="{Binding WellCapacity}" FontAttributes="Bold"/>
-                <ImageButton HorizontalOptions="EndAndExpand" Source="add" WidthRequest="50" Clicked="ImageButton_Clicked"/>
+                <ImageButton HorizontalOptions="EndAndExpand" x:Name="AddButton" Source="add" WidthRequest="50" Clicked="ImageButton_Clicked"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
