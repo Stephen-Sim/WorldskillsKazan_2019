@@ -33,6 +33,7 @@
             this.warehouseMangementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewPartItem = new System.Windows.Forms.DataGridView();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +54,7 @@
             this.inventoryReportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(997, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1017, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -62,12 +63,14 @@
             this.purchaseOrderManagementToolStripMenuItem.Name = "purchaseOrderManagementToolStripMenuItem";
             this.purchaseOrderManagementToolStripMenuItem.Size = new System.Drawing.Size(174, 20);
             this.purchaseOrderManagementToolStripMenuItem.Text = "Purchase Order Management";
+            this.purchaseOrderManagementToolStripMenuItem.Click += new System.EventHandler(this.purchaseOrderManagementToolStripMenuItem_Click);
             // 
             // warehouseMangementToolStripMenuItem
             // 
             this.warehouseMangementToolStripMenuItem.Name = "warehouseMangementToolStripMenuItem";
             this.warehouseMangementToolStripMenuItem.Size = new System.Drawing.Size(146, 20);
             this.warehouseMangementToolStripMenuItem.Text = "Warehouse Mangement";
+            this.warehouseMangementToolStripMenuItem.Click += new System.EventHandler(this.warehouseMangementToolStripMenuItem_Click);
             // 
             // inventoryReportToolStripMenuItem
             // 
@@ -80,6 +83,7 @@
             // 
             this.dataGridViewPartItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPartItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column9,
             this.Column1,
             this.Column2,
             this.Column3,
@@ -88,10 +92,17 @@
             this.Column6,
             this.Column7,
             this.Column8});
-            this.dataGridViewPartItem.Location = new System.Drawing.Point(9, 27);
+            this.dataGridViewPartItem.Location = new System.Drawing.Point(12, 36);
             this.dataGridViewPartItem.Name = "dataGridViewPartItem";
-            this.dataGridViewPartItem.Size = new System.Drawing.Size(976, 570);
+            this.dataGridViewPartItem.Size = new System.Drawing.Size(992, 570);
             this.dataGridViewPartItem.TabIndex = 1;
+            this.dataGridViewPartItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPartItem_CellClick);
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "OrderItemID";
+            this.Column9.Name = "Column9";
+            this.Column9.Visible = false;
             // 
             // Column1
             // 
@@ -143,7 +154,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(997, 607);
+            this.ClientSize = new System.Drawing.Size(1017, 617);
             this.Controls.Add(this.dataGridViewPartItem);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -165,6 +176,7 @@
         private System.Windows.Forms.ToolStripMenuItem warehouseMangementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inventoryReportToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridViewPartItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

@@ -3,6 +3,7 @@ C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\o
 C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
 C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.InventoryReport.resources
 C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.PurchaseOrder.resources
 C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
 C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
@@ -15,3 +16,4 @@ C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\b
 C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
 C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\USER\Desktop\WSC2019_Kazan\Session4\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.WarehouseManagementForm.resources
