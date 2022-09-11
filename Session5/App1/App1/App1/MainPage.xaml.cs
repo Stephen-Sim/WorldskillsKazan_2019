@@ -63,7 +63,7 @@ namespace App1
 
         private async void update()
         {
-            await Task.Delay(1000);
+            await Task.Delay(5000);
 
             if (CrossConnectivity.Current.IsConnected)
             {
