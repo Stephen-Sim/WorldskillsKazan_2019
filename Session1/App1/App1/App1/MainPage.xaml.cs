@@ -89,7 +89,7 @@ namespace App1
                 AssetGroupId = assetgroup.ID,
                 DepartmentId = department.ID,
                 StartDate = StartDatePicker.Date,
-                EndDate = StartDatePicker.Date,
+                EndDate = EndDatePicker.Date,
                 SearchContent = SearchEditor.Text
             };
 
