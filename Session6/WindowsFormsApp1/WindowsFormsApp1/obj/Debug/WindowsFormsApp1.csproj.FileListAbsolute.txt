@@ -8,10 +8,10 @@ C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\b
 C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
 C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
 C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.InventoryControlForm.resources
 C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
 C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
 C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
 C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
-C:\Users\USER\Desktop\WSC2019_Kazan\Session6\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.InventoryControlForm.resources

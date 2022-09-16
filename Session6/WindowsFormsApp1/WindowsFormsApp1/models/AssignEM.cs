@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WindowsFormsApp1.models
+{
+    public class AssignEM
+    {
+        public long ID { get; set; }
+        public string Name { get; set; }
+        public string BatchNumber { get; set; }
+        public int UnitPrice { get; set; }
+        public int Amount { get; set; }
+        public long OrderId { get; set; }
+    }
+}
