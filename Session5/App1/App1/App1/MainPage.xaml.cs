@@ -112,8 +112,7 @@ namespace App1
 
         private void ImageButton_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new NavigationPage();
-            App.Current.MainPage.Navigation.PushAsync(new AddWellForm());
+            this.Navigation.PushAsync(new AddWellForm());
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -122,7 +121,6 @@ namespace App1
             {
                 var SelectedWell = (Well) WellPicker.SelectedItem;
             
-                App.Current.MainPage = new NavigationPage();
                 App.Current.MainPage.Navigation.PushAsync(new AddWellForm(SelectedWell));
             }
         }

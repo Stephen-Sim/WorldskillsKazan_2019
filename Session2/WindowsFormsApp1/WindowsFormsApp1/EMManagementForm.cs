@@ -25,26 +25,25 @@ namespace WindowsFormsApp1
 
         private void loadData()
         {
-            ent = new WSC2019_Session2Entities1();
-
             dataGridViewAssets.Rows.Clear();
 
-            var allAsset = ent.Assets.ToList();
-
-            for (int i = 0; i < allAsset.Count(); i++)
+            var allAssetInfo = ent.Assets.ToList().Select(x => new
             {
-                string lastClosed = "--";
-                var assetEm = allAsset[i].EmergencyMaintenances.OrderByDescending(x => x.EMReportDate).ToList();
+                x.ID,
+                x.AssetSN,
+                x.AssetName,
+                LastClosed = x.EmergencyMaintenances.Where(y => y.EMEndDate.HasValue).OrderByDescending(y => y.EMEndDate).Any() ? x.EmergencyMaintenances.Where(y => y.EMEndDate.HasValue).OrderByDescending(y => y.EMEndDate).First().EMEndDate.Value.ToString("dd/MM/yyyy") : "--",
+                NumberOfEms = x.EmergencyMaintenances.Where(y => y.EMEndDate.HasValue).Count(),
+                IsNotCompleted = x.EmergencyMaintenances.Where(y => y.EMEndDate == null).Any()
+            }).ToList();
 
-                if (assetEm.Any() && assetEm.OrderByDescending(x => x.EMEndDate).FirstOrDefault().EMEndDate != null)
-                    lastClosed = DateTime.Parse(assetEm.OrderByDescending(x => x.EMEndDate).FirstOrDefault().EMEndDate.ToString()).ToString("dd/MM/yyyy");
+            for (int i = 0; i < allAssetInfo.Count; i++)
+            {
+                dataGridViewAssets.Rows.Add(allAssetInfo[i].ID, allAssetInfo[i].AssetSN, allAssetInfo[i].AssetName, allAssetInfo[i].LastClosed, allAssetInfo[i].NumberOfEms);
 
-                dataGridViewAssets.Rows.Add(allAsset[i].ID.ToString(), allAsset[i].AssetSN, allAsset[i].AssetName, lastClosed, assetEm.Where(x => x.EMEndDate != null).Count());
-
-                for (int j = 0; j < assetEm.Count; j++)
+                if (allAssetInfo[i].IsNotCompleted)
                 {
-                    if (assetEm[j].EMStartDate != null && assetEm[j].EMEndDate == null)
-                        dataGridViewAssets.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                    dataGridViewAssets.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                 }
             }
 

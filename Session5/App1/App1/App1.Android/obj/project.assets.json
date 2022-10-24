@@ -31,7 +31,7 @@
             "related": ".pdb;.xml"
           },
           "lib/MonoAndroid10/Plugin.Connectivity.dll": {
-            "related": ".Abstractions.pdb;.Abstractions.xml;.pdb;.xml"
+            "related": ".Abstractions.pdb;.Abstractions.xml;.dll.mdb;.pdb;.xml"
           }
         },
         "runtime": {
@@ -39,7 +39,7 @@
             "related": ".pdb;.xml"
           },
           "lib/MonoAndroid10/Plugin.Connectivity.dll": {
-            "related": ".Abstractions.pdb;.Abstractions.xml;.pdb;.xml"
+            "related": ".Abstractions.pdb;.Abstractions.xml;.dll.mdb;.pdb;.xml"
           }
         }
       },
@@ -1912,6 +1912,7 @@
         "lib/MonoAndroid10/Plugin.Connectivity.Abstractions.pdb",
         "lib/MonoAndroid10/Plugin.Connectivity.Abstractions.xml",
         "lib/MonoAndroid10/Plugin.Connectivity.dll",
+        "lib/MonoAndroid10/Plugin.Connectivity.dll.mdb",
         "lib/MonoAndroid10/Plugin.Connectivity.pdb",
         "lib/MonoAndroid10/Plugin.Connectivity.xml",
         "lib/UAP10/Plugin.Connectivity.Abstractions.dll",
